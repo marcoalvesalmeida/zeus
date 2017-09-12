@@ -1,0 +1,39 @@
+CREATE DATABASE manifestacao;
+create table usuarios(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(50) NOT NULL,
+    sobrenome varchar(50) NOT NULL,
+    nascimento date,
+    email varchar(50) NOT NULL,
+    senha varchar(30) NOT NULL
+);
+create table eventos(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    titulo varchar(100) NOT NULL,
+    data_inicio date,
+    data_fim date,
+    autores varchar(100),
+    localizacao varchar(100),
+    resumo text NOT NULL,
+    caracteristicas varchar(200),
+    coordenador varchar(100),
+    local_ensaio varchar(100),
+    ponto_cultura varchar(100),
+    informacoes varchar(200),
+    usuario int,
+    data_pub date,
+    FOREIGN KEY (usuario) REFERENCES usuarios(id)
+);
+create table img(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(50),
+    endereco varchar(100) NOT NULL,
+    ex int,
+    FOREIGN KEY(ex) REFERENCES eventos(id)
+);
+create table acessos(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    data_acesso date NOT NULL,
+    sistema varchar(50) NOT NULL,
+	qtde int    
+);
