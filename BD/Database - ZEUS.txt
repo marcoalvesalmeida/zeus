@@ -1,14 +1,28 @@
 CREATE DATABASE manifestacao;
-create table usuarios(
-	id int AUTO_INCREMENT PRIMARY KEY,
-    nome varchar(50) NOT NULL,
-    sobrenome varchar(50) NOT NULL,
-    nascimento date,
-    email varchar(50) NOT NULL,
-    senha varchar(30) NOT NULL
+USE manifestacao;
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `sobrenome` varchar(50) NOT NULL,
+  `nascimento` date DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(100) NOT NULL,
+  `nivel` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO usuarios VALUES (DEFAULT, 'Administrador','Admin', '2017-03-03', 'admin@admin.com','admin','A');
+INSERT INTO usuarios VALUES (DEFAULT, 'AdministradorB','Adminb', '2017-03-03', 'adminb@admin.com','adminb','B');
+
+CREATE TABLE mensagens(
+    id int auto_increment primary key,
+    nome varchar(50),
+    email varchar(50),
+    mensagem text
 );
+
 create table eventos(
-	id int AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT PRIMARY KEY,
     titulo varchar(100) NOT NULL,
     data_inicio date,
     data_fim date,
@@ -32,8 +46,8 @@ create table img(
     FOREIGN KEY(ex) REFERENCES eventos(id)
 );
 create table acessos(
-	id int AUTO_INCREMENT PRIMARY KEY,
+    id int AUTO_INCREMENT PRIMARY KEY,
     data_acesso date NOT NULL,
     sistema varchar(50) NOT NULL,
-	qtde int    
+    qtde int    
 );
